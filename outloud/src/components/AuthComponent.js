@@ -5,7 +5,7 @@ import {auth0 as auth0config} from '../../configuration.json'
 
 const auth0 = new Auth0({ 
     domain: auth0config.domain, 
-    clientId: auth0.clientId 
+    clientId: auth0config.clientId 
 });
 
 const AuthComponent = props => {
