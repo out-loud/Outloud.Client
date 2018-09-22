@@ -7,6 +7,7 @@ const auth0 = new Auth0({
   domain: auth0config.domain, 
   clientId: auth0config.clientId 
 });
+
 const jwtDecode = require('jwt-decode')
 
 const AuthComponent = () => {
