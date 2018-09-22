@@ -1,0 +1,3 @@
+rootProject.name = 'outloud'
+
+include ':app'
