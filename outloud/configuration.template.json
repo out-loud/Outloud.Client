@@ -1,0 +1,7 @@
+{
+    "$schema": "./configuration.schema.json",
+    "auth0": {
+        "clientId": "",
+        "domain": ""
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "auth0"
+  ],
+  "properties": {
+    "auth0": {
+      "$id": "#/properties/auth0",
+      "type": "object",
+      "title": "The Auth0 Schema",
+      "required": [
+        "domain",
+        "clientId"
+      ],
+      "properties": {
+        "domain": {
+          "$id": "#/properties/auth0/properties/domain",
+          "type": "string",
+          "title": "The Domain Schema",
+          "default": "",
+          "examples": [
+            "xxx"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "clientId": {
+          "$id": "#/properties/auth0/properties/clientId",
+          "type": "string",
+          "title": "The Clientid Schema",
+          "default": "",
+          "examples": [
+            "xxx"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}
