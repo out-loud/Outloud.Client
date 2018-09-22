@@ -5,25 +5,37 @@
   "type": "object",
   "title": "The Root Schema",
   "required": [
+    "$schema",
     "auth0"
   ],
   "properties": {
+    "$schema": {
+      "$id": "#/properties/$schema",
+      "type": "string",
+      "title": "The $schema Schema",
+      "default": "",
+      "examples": [
+        "./configuration.schema.json"
+      ],
+      "pattern": "^(.*)$"
+    },
     "auth0": {
       "$id": "#/properties/auth0",
       "type": "object",
       "title": "The Auth0 Schema",
       "required": [
-        "domain",
-        "clientId"
+        "audience",
+        "clientId",
+        "domain"
       ],
       "properties": {
-        "domain": {
-          "$id": "#/properties/auth0/properties/domain",
+        "audience": {
+          "$id": "#/properties/auth0/properties/audience",
           "type": "string",
-          "title": "The Domain Schema",
+          "title": "The Audience Schema",
           "default": "",
           "examples": [
-            "xxx"
+            ""
           ],
           "pattern": "^(.*)$"
         },
@@ -33,7 +45,17 @@
           "title": "The Clientid Schema",
           "default": "",
           "examples": [
-            "xxx"
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "domain": {
+          "$id": "#/properties/auth0/properties/domain",
+          "type": "string",
+          "title": "The Domain Schema",
+          "default": "",
+          "examples": [
+            ""
           ],
           "pattern": "^(.*)$"
         }
