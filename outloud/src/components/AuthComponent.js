@@ -8,7 +8,7 @@ const auth0 = new Auth0({
   clientId: auth0config.clientId 
 });
 
-const jwtDecode = require('jwt-decode')
+const jwtDecode = require('jwt-decode');
 
 const AuthComponent = () => {
   login = () => {
@@ -27,6 +27,7 @@ const AuthComponent = () => {
   logout = async () => {
     await this.removeUserItem('accessToken');
     await this.removeUserItem('expiresAt');
+    console.log("logged out")
   }
 
   removeUserItem = async (name) => {
@@ -84,9 +85,9 @@ const AuthComponent = () => {
   }
 
   return(
-    <View>{this.isAuthenticated() ? 
-      <Button title="Logout" onPress={this.logout}/> :
-      <Button title="Login" onPress={this.login}/>}
+    <View>
+      <Button title="Login" onPress={this.login}/>
+      <Button title="Logout" onPress={this.logout}/>
     </View>
   );
 }
