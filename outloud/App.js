@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import AuthComponent from './src/components/AuthComponent'
+import UserDataComponent from './src/components/UserDataComponent'
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AuthComponent/>
+        <UserDataComponent/>
       </View>
     );
   }

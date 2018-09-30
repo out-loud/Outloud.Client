@@ -1,5 +1,6 @@
-import React from 'react';
-import {AsyncStorage, Button, View} from 'react-native';
+import React from 'react'
+import {Button, View} from 'react-native'
+import {AsyncStorage} from 'react-native';
 import Auth0 from 'react-native-auth0';
 import {auth0 as auth0config} from '../configuration.json';
 
@@ -10,7 +11,41 @@ const auth0 = new Auth0({
 
 const jwtDecode = require('jwt-decode');
 
-const AuthComponent = () => {
+const UserDataComponent = () => {
+  getData = async () => {
+    try {
+      let response = await fetch(
+        'http://10.0.2.2:5002/api/values'
+      );
+      let responseJson = await response.json();
+      console.log(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  saveData = async() => {
+    try {
+      let token = await this.getAccessToken();
+      console.log(token);
+      let response = await fetch('http://10.0.2.2:5002/api/values', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          value: 'data'
+        })
+      });
+      let responseResult = await response;
+      console.log(responseResult);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   login = () => {
     auth0
     .webAuth
@@ -47,8 +82,8 @@ const AuthComponent = () => {
   }
 
   isInRole = async (roleName) =>  {
-      const roles = await this.getUserRoles();
-      return roles.indexOf(roleName) > -1;
+    const roles = await this.getUserRoles();
+    return roles.indexOf(roleName) > -1;
   }
 
   getUserRoles = async () => {
@@ -88,8 +123,10 @@ const AuthComponent = () => {
     <View>
       <Button title="Login" onPress={this.login}/>
       <Button title="Logout" onPress={this.logout}/>
+      <Button title="Get Data" onPress={this.getData}/>
+      <Button title="Save Data" onPress={this.saveData}/>
     </View>
-  );
+  )
 }
 
-export default AuthComponent;
+export default UserDataComponent;
