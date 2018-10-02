@@ -2,6 +2,8 @@ language: android
 jdk: oraclejdk8
 sudo: required
 dist: precise
+before_script:
+  - cd outloud
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
