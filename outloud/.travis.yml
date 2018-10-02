@@ -32,7 +32,7 @@ before_install:
   - travis_retry sudo apt-get update -qq
   - travis_retry sudo apt-get install -y -qq yarn
   - chmod +x ./android/gradlew
-  - openssl aes-256-cbc -K $encrypted_b6cc45ee0c0c_key -iv $encrypted_b6cc45ee0c0c_iv -in ./android/app/rn-sample-key.keystore.enc -out ./android/app/rn-sample-key.keystore -d
+  - openssl aes-256-cbc -K $encrypted_ba1b7768d085_key -iv $encrypted_ba1b7768d085_iv -in outloud.keystore.enc -out outloud/android/app/outloud.keystore -d
   - gem install fastlane --no-rdoc --no-ri --no-document --quiet
 install:
   - yarn install
