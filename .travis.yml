@@ -33,17 +33,17 @@ before_install:
   - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
   - travis_retry sudo apt-get update -qq
   - travis_retry sudo apt-get install -y -qq yarn
-  - chmod +x ./android/gradlew
+  - chmod +x ./outloud/android/gradlew
   - openssl aes-256-cbc -K $encrypted_ba1b7768d085_key -iv $encrypted_ba1b7768d085_iv -in outloud.keystore.enc -out outloud/android/app/outloud.keystore -d
-  - gem install fastlane --no-rdoc --no-ri --no-document --quiet
+  - cd outloud && gem install fastlane --no-rdoc --no-ri --no-document --quiet
 install:
   - yarn install
 script:
-  - cd android && ./gradlew clean
-  - fastlane beta
+  - ./outloud/android/gradlew clean
+  - ./outloud/fastlane beta
 after_script:
 #TODO
-  - ./gradlew assembleRelease
+  - ./android/gradlew assembleRelease
 branches:
   only:
   - master
