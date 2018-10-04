@@ -39,8 +39,8 @@ before_install:
 install:
   - yarn install
 script:
-  - ./outloud/android/gradlew clean
-  - ./outloud/fastlane beta
+  - ./android/gradlew clean
+  - ./fastlane beta
 after_script:
 #TODO
   - ./android/gradlew assembleRelease
