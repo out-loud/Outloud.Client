@@ -1,11 +1,11 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {StackNavigator} from  'react-navigation';
+import {createDrawerNavigator} from  'react-navigation';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import MainScreen from "../MainPage";
 import DetailScreen from "../DetailScreen";
 
-const StackNav = StackNavigator({
+const StackNav = createDrawerNavigator({
   Main : {
     screen: MainScreen,
     navigationOptions: ({navigation}) => ({
