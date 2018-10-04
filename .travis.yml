@@ -38,12 +38,14 @@ before_install:
   - cd outloud && gem install fastlane --no-rdoc --no-ri --no-document --quiet
 install:
   - yarn install
+before_script:
+  - cd outloud/android
 script:
-  - ./outloud/android/gradlew clean
+  - ./gradlew clean
   - ./fastlane beta
 after_script:
 #TODO
-  - ./outloud/android/gradlew assembleRelease
+  - ./gradlew assembleRelease
 branches:
   only:
   - master
