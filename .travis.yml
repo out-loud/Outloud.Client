@@ -39,7 +39,7 @@ before_install:
 install:
   - yarn install
 script:
-  - ./android/gradlew clean
+  - ./gradlew clean
   - ./fastlane beta
 after_script:
 #TODO
