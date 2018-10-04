@@ -9,27 +9,32 @@ const auth0 = new Auth0({
   clientId: auth0config.clientId 
 });
 
+let apiUrl;
+
+if (__DEV__) {
+  apiUrl = 'http://10.0.2.2:5002/api/values';
+} else {
+  apiUrl = 'APIURL';
+}
+
 const jwtDecode = require('jwt-decode');
 
 const UserDataComponent = () => {
   getData = async () => {
-    throw 'Test exception2';
-    // try {
-    //   let response = await fetch(
-    //     'http://10.0.2.2:5002/api/values'
-    //   );
-    //   let responseJson = await response.json();
-    //   console.log(responseJson);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      let response = await fetch(apiUrl);
+      let responseJson = await response.json();
+      console.log(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   saveData = async() => {
     try {
       let token = await this.getAccessToken();
       console.log(token);
-      let response = await fetch('http://10.0.2.2:5002/api/values', {
+      let response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + token,
