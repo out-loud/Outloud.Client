@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-sentry')
     api project(':react-native-vector-icons')
     api project(':react-native-auth0')
     implementation fileTree(dir: "libs", include: ["*.jar"])

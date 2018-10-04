@@ -6,7 +6,8 @@
   "title": "The Root Schema",
   "required": [
     "$schema",
-    "auth0"
+    "auth0",
+    "sentry"
   ],
   "properties": {
     "$schema": {
@@ -60,6 +61,27 @@
           "pattern": "^(.*)$"
         }
       }
+    },
+    "sentry": {
+      "$id": "#/properties/sentry",
+      "type": "object",
+      "title": "The Sentry Schema",
+      "required": [
+        "dsn"
+      ],
+      "properties": {
+        "dsn": {
+          "$id": "#/properties/sentry/properties/dsn",
+          "type": "string",
+          "title": "The Dsn Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
     }
   }
 }
+ 

@@ -4,5 +4,8 @@
         "audience": "",
         "clientId": "",
         "domain": ""
+    },
+    "sentry": {
+        "dsn": ""
     }
 }

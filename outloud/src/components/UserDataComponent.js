@@ -13,15 +13,16 @@ const jwtDecode = require('jwt-decode');
 
 const UserDataComponent = () => {
   getData = async () => {
-    try {
-      let response = await fetch(
-        'http://10.0.2.2:5002/api/values'
-      );
-      let responseJson = await response.json();
-      console.log(responseJson);
-    } catch (error) {
-      console.error(error);
-    }
+    throw 'Test exception2';
+    // try {
+    //   let response = await fetch(
+    //     'http://10.0.2.2:5002/api/values'
+    //   );
+    //   let responseJson = await response.json();
+    //   console.log(responseJson);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   saveData = async() => {
