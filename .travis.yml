@@ -40,7 +40,7 @@ install:
   - yarn install
 before_script:
   - ls
-  - cd outloud/android
+  - cd android
 script:
   - ./gradlew clean
   - ./fastlane beta
