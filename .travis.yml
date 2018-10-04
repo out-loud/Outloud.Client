@@ -39,11 +39,11 @@ before_install:
 install:
   - yarn install
 script:
-  - ./gradlew clean
+  - ./outloud/android/gradlew clean
   - ./fastlane beta
 after_script:
 #TODO
-  - ./android/gradlew assembleRelease
+  - ./outloud/android/gradlew assembleRelease
 branches:
   only:
   - master
