@@ -39,6 +39,7 @@ before_install:
 install:
   - yarn install
 before_script:
+  - ls
   - cd outloud/android
 script:
   - ./gradlew clean
