@@ -19,7 +19,7 @@ if (__DEV__) {
 
 const jwtDecode = require('jwt-decode');
 
-const UserDataComponent = () => {
+const UserData = () => {
   getData = async () => {
     try {
       let response = await fetch(apiUrl);
@@ -135,4 +135,4 @@ const UserDataComponent = () => {
   )
 }
 
-export default UserDataComponent;
+export default UserData;

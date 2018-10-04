@@ -2,12 +2,12 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {StackNavigator} from  'react-navigation';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import MainScreenComponent from "../MainPageComponent";
-import DetailScreenComponent from "../DetailScreenComponent";
+import MainScreen from "../MainPage";
+import DetailScreen from "../DetailScreen";
 
 const StackNav = StackNavigator({
   Main : {
-    screen: MainScreenComponent,
+    screen: MainScreen,
     navigationOptions: ({navigation}) => ({
       title: "Main",
       headerLeft:(<TouchableOpacity onPress={() => navigation.navigate("DrawerOpen")}>
@@ -17,7 +17,7 @@ const StackNav = StackNavigator({
     })
   },
   Detail: {
-    screen: DetailScreenComponent,
+    screen: DetailScreen,
     navigationOptions: {
       title: "Detail",
     }

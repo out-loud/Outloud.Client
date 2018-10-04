@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-class DetailScreenComponent extends Component {
+class DetailScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DetailScreenComponent;
+export default DetailScreen;

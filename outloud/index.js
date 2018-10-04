@@ -2,7 +2,7 @@ import { AppRegistry, Dimensions } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
 import {name as appName} from './app.json';
 
-import SideMenu from './src/components/navigation/SideMenuComponent'
+import SideMenu from './src/components/navigation/SideMenu'
 import stackNav from './src/components/navigation/StackNav';
 import { Sentry } from 'react-native-sentry';
 import {sentry as sentryConfig} from './src/configuration.json';

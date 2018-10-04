@@ -4,7 +4,7 @@ import styles from './SideMenu.style';
 import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View} from 'react-native';
 
-class SideMenuComponent extends Component {
+class SideMenu extends Component {
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
@@ -58,8 +58,8 @@ class SideMenuComponent extends Component {
   }
 }
 
-SideMenuComponent.propTypes = {
+SideMenu.propTypes = {
   navigation: PropTypes.object
 };
 
-export default SideMenuComponent;
+export default SideMenu;
