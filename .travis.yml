@@ -27,7 +27,7 @@ licenses:
   - android-sdk-license-.+
   - google-gdk-license-.+
 before_install:
-  - nvm install 7
+  - nvm install 8
   - node --version
   - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -48,6 +48,7 @@ branches:
   only:
   - master
 notifications:
+  slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
   email:
     on_success: never
-on_failure: always
+    on_failure: never
