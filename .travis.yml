@@ -31,6 +31,7 @@ before_install:
   - node --version
   - travis_retry sudo apt-get update -qq
   - chmod +x ./outloud/android/gradlew
+  - ls
   - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in outloud.keystore.enc -out outloud/android/app/src/outloud.keystore -d
   - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in configuration.json.enc -out outloud/src/configuration.json -d
 install:
