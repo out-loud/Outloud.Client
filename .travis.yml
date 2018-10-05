@@ -5,6 +5,7 @@ dist: precise
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- cd outloud
 cache:
   yarn: true
   directories:
@@ -21,32 +22,30 @@ android:
   - extra-google-google_play_services
   - extra-google-m2repository
 licenses:
-- android-sdk-preview-license-.+
-- android-sdk-license-.+
-- google-gdk-license-.+
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 before_install:
-- nvm install 8
-- node --version
-- travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
-  -
-- echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-- travis_retry sudo apt-get update -qq
-- travis_retry sudo apt-get install -y -qq yarn
-- chmod +x ./outloud/android/gradlew
-- openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv
-  -in outloud.keystore.enc -out outloud.keystore -d
+  - nvm install 8
+  - node --version
+  - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - travis_retry sudo apt-get update -qq
+  - travis_retry sudo apt-get install -y -qq yarn
+  - chmod +x ./outloud/android/gradlew
+  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in outloud.keystore.enc -out outloud.keystore -d
 install:
-- yarn install
+  - yarn install
 before_script:
-- ls
-- cd android
+  - ls
+  - cd android
 script:
-- "./gradlew clean"
+  - "./gradlew clean"
 after_script:
-- "./gradlew assembleRelease"
+  - "./gradlew assembleRelease"
 branches:
   only:
-  - master
+    - master
 notifications:
   slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
   email:
