@@ -6,7 +6,7 @@ before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
-  yarn: true
+  # yarn: true
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
@@ -16,37 +16,39 @@ android:
   - platform-tools
   - tools
   - build-tools-27.0.3
+  - build-tools-26.0.3
   - android-27
+  - android-26
   - extra-android-m2repository
   - extra-google-google_play_services
   - extra-google-m2repository
 licenses:
-- android-sdk-preview-license-.+
-- android-sdk-license-.+
-- google-gdk-license-.+
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 before_install:
-- nvm install 8
-- node --version
-- travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
-  -
-- echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-- travis_retry sudo apt-get update -qq
-- travis_retry sudo apt-get install -y -qq yarn
-- chmod +x ./outloud/android/gradlew
-- openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv
-  -in outloud.keystore.enc -out outloud.keystore -d
+  - nvm install 8
+  - node --version
+  - travis_retry sudo apt-get update -qq
+  - chmod +x ./outloud/android/gradlew
+  - ls
+  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
+  - mv outloud.keystore outloud/android/app
+  - mv configuration.json outloud/src
 install:
-- yarn install
+  - cd outloud
+  - npm install
 before_script:
-- ls
-- cd android
+  - ls
+  - cd android
 script:
-- "./gradlew clean"
+  - ./gradlew assembleRelease
 after_script:
-- "./gradlew assembleRelease"
+  - ./gradlew clean
 branches:
   only:
-  - master
+    - master
 notifications:
   slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
   email:
