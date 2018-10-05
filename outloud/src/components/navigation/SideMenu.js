@@ -3,8 +3,13 @@ import React, {Component} from 'react';
 import styles from './SideMenu.style';
 import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View} from 'react-native';
+import LoginButton from '../LoginButton'
 
 class SideMenu extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
@@ -15,6 +20,7 @@ class SideMenu extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <LoginButton text='asd'/>
         <ScrollView>
           <View>
             <Text style={styles.sectionHeadingStyle}>
