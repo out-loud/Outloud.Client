@@ -29,9 +29,10 @@ licenses:
 before_install:
   - nvm install 8
   - node --version
-   - travis_retry sudo apt-get update -qq
+  - travis_retry sudo apt-get update -qq
   - chmod +x ./outloud/android/gradlew
-  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in outloud.keystore.enc -out outloud.keystore -d
+  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in outloud.keystore.enc -out android/app/src/outloud.keystore -d
+  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in configuration.json.enc -out src/configuration.json -d
 install:
   - cd outloud
   - npm install
