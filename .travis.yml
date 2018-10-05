@@ -2,52 +2,48 @@ language: android
 jdk: oraclejdk8
 sudo: required
 dist: precise
-# before_script:
-#   - cd outloud
 before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   yarn: true
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - node_modules
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - node_modules
 android:
   components:
-    - platform-tools
-    - tools
-    - build-tools-27.0.3
-    - android-27
-    - extra-android-m2repository
-    - extra-google-google_play_services
-    - extra-google-m2repository
+  - platform-tools
+  - tools
+  - build-tools-27.0.3
+  - android-27
+  - extra-android-m2repository
+  - extra-google-google_play_services
+  - extra-google-m2repository
 licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
+- android-sdk-preview-license-.+
+- android-sdk-license-.+
+- google-gdk-license-.+
 before_install:
-  - nvm install 8
-  - node --version
-  - travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  - travis_retry sudo apt-get update -qq
-  - travis_retry sudo apt-get install -y -qq yarn
-  - chmod +x ./outloud/android/gradlew
-  - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in outloud.keystore.enc -out outloud.keystore -d
-  - cd outloud && gem install fastlane --no-rdoc --no-ri --no-document --quiet
+- nvm install 8
+- node --version
+- travis_retry curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add
+  -
+- echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+- travis_retry sudo apt-get update -qq
+- travis_retry sudo apt-get install -y -qq yarn
+- chmod +x ./outloud/android/gradlew
+- openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv
+  -in outloud.keystore.enc -out outloud.keystore -d
 install:
-  - yarn install
+- yarn install
 before_script:
-  - ls
-  - cd android
+- ls
+- cd android
 script:
-  - ./gradlew clean
-#TODO
-  - ./fastlane beta
+- "./gradlew clean"
 after_script:
-#TODO
-  - ./gradlew assembleRelease
+- "./gradlew assembleRelease"
 branches:
   only:
   - master
@@ -56,3 +52,12 @@ notifications:
   email:
     on_success: never
     on_failure: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: JMp2JDtoxxZipXuhfmkE0lXmzjdxb/lhE25HsyS0MPopkGLoa2snVAKxouFt41+c56noBV6V8WlrpzWGeDI2eDrvkbInbS0EsE5p4EKuVXDw24PUHfVk83NiIQ2t7qO5k4BsQ9F24fNPIxrSN8H2vStzlyGA15zLbALxIP5dSBMnjb0h4373iYp+qkCA0VmzfS8Y/R4dTo24rPzvsgNQm9pXMptqtRUcZyUuEx0Yf3yr+FiEAD6YU1TsXeV0Hn1F+VtTseWyS/KBB0Ajtgol5PdiIkwoj96mB1WPKdEEP+BNxAME1Kuw2aBunWukIJrzPff1r+fSxfBqBRH+UuSZEF9hqtydr3tsM5ir3dBep3c2Otz2xMzoqotdsUVbHbcDJ3SVQz8Mw2dAVqDyXmis7Fs9YMZ7rvvZaDqFOdkz1yI4LZhBOHnZKewPo5K/krAaU/EbI4Gcvv5fu5FePfSYmRBnln48kqusoSJIfLjX4Tz6T3HqkR3RDTn/QJuc2rMdsRAg3hIe7SrQNaCQauxNgbYdMaa3ToFTtHUGh0dgYkvlCVAXOUCYaSjZnPMOtb/cDDJ/fvsEg0H3PWLjjK/O0ti/1rWBd9rAyAplYBAuDdeYiUTbzHG03ewnI/gZ3+ND6+VFTO7Gjxt1D4DGOQYG6jjevycDWPZDvisioj66SM0=
+  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/release/app-release.apk"
+  on:
+    repo: out-loud/Outloud.Client
+    tags: true
