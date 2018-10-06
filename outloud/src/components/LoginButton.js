@@ -25,17 +25,6 @@ class Login extends Component {
     return new Date().getTime() < parsedExpireAt;
   }
 
-  // async getUserItem(name) {
-  //   try {
-  //     const value = await AsyncStorage.getItem(`@User:${name}`);
-  //     if (value !== null) {
-  //       return value;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  
   login = async() => {
     auth0
     .webAuth
@@ -58,12 +47,10 @@ class Login extends Component {
     this.setState({isAuth: false});
     await AsyncStorage.removeItem(`@User:accessToken`);
     await AsyncStorage.removeItem(`@User:expiresAt`);
-    console.log("logged out");
   }
 
   render() {
     let button = this.state.isAuth ? <Button title="Logout" onPress={this.logout}/> : <Button title="Login" onPress={this.login}/>;
-    console.log(this.state.isAuth);
     return (
       <View>
         {button}

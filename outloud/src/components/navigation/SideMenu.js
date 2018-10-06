@@ -20,7 +20,7 @@ class SideMenu extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <LoginButton text='asd'/>
+        <LoginButton/>
         <ScrollView>
           <View>
             <Text style={styles.sectionHeadingStyle}>

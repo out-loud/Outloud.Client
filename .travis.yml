@@ -6,7 +6,6 @@ before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
-  # yarn: true
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
@@ -31,7 +30,6 @@ before_install:
   - node --version
   - travis_retry sudo apt-get update -qq
   - chmod +x ./outloud/android/gradlew
-  - ls
   - openssl aes-256-cbc -K $encrypted_c3c3b15339b8_key -iv $encrypted_c3c3b15339b8_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - mv outloud.keystore outloud/android/app
@@ -40,7 +38,6 @@ install:
   - cd outloud
   - npm install
 before_script:
-  - ls
   - cd android
 script:
   - ./gradlew assembleRelease
@@ -56,7 +53,7 @@ deploy:
   provider: releases
   api_key:
     secure: JMp2JDtoxxZipXuhfmkE0lXmzjdxb/lhE25HsyS0MPopkGLoa2snVAKxouFt41+c56noBV6V8WlrpzWGeDI2eDrvkbInbS0EsE5p4EKuVXDw24PUHfVk83NiIQ2t7qO5k4BsQ9F24fNPIxrSN8H2vStzlyGA15zLbALxIP5dSBMnjb0h4373iYp+qkCA0VmzfS8Y/R4dTo24rPzvsgNQm9pXMptqtRUcZyUuEx0Yf3yr+FiEAD6YU1TsXeV0Hn1F+VtTseWyS/KBB0Ajtgol5PdiIkwoj96mB1WPKdEEP+BNxAME1Kuw2aBunWukIJrzPff1r+fSxfBqBRH+UuSZEF9hqtydr3tsM5ir3dBep3c2Otz2xMzoqotdsUVbHbcDJ3SVQz8Mw2dAVqDyXmis7Fs9YMZ7rvvZaDqFOdkz1yI4LZhBOHnZKewPo5K/krAaU/EbI4Gcvv5fu5FePfSYmRBnln48kqusoSJIfLjX4Tz6T3HqkR3RDTn/QJuc2rMdsRAg3hIe7SrQNaCQauxNgbYdMaa3ToFTtHUGh0dgYkvlCVAXOUCYaSjZnPMOtb/cDDJ/fvsEg0H3PWLjjK/O0ti/1rWBd9rAyAplYBAuDdeYiUTbzHG03ewnI/gZ3+ND6+VFTO7Gjxt1D4DGOQYG6jjevycDWPZDvisioj66SM0=
-  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/release/app-release.apk"
+  file: "$TRAVIS_BUILD_DIR/outloud/android/app/build/outputs/apk/release/app-release.apk"
   on:
     repo: out-loud/Outloud.Client
     tags: true
