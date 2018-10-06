@@ -46,9 +46,6 @@ script:
   - ./gradlew assembleRelease
 after_script:
   - ./gradlew clean
-branches:
-  only:
-    - master
 notifications:
   slack: outloud-talk:TGwStb79G3lZNaeh7f5aiGIP
   email:
