@@ -4,4 +4,4 @@
 start chrome "http://localhost:8081/debugger-ui/"
 #2 start emulator
 cd C:/Users/Marcin/AppData/Local/Android/Sdk/tools
-./emulator -avd Nexus_5X_API_26 -feature WindowsHypervisorPlatform
+./emulator -avd Nexus_5X_API_26

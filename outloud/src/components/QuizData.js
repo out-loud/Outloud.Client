@@ -10,54 +10,53 @@ if (__DEV__) {
 }
 
 class Quiz extends Component {
-    state = {status: 0}
-    
-    saveData = async() => {
-        try {
-          let token = await AsyncStorage.getItem(`@User:accessToken`);
-          console.log(token);
-          let response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + token,
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              value: 'data'
-            })
-          });
-          let responseResult = await response;
-          console.log(responseResult);
-          this.setState({status: responseResult.status})
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-    render() {
-        let message = '';
-        if (this.state.status === 0)
-            message = 'Not called'
-        else if (this.state.status === 202)
-            message = 'Accepted';
-        else if (this.state.status === 401)
-            message = 'Unauthorized'
-        else
-            message = 'Internal Server Error'
-        return(
-            <View>
-                <Text>{message}</Text>
-                <Button title='Save data' onPress={this.saveData}/>
-            </View>
-        )
+  state = {status: 0}
+  
+  saveData = async() => {
+    try {
+      let token = await AsyncStorage.getItem(`@User:accessToken`);
+      console.log(token);
+      let response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          value: 'data'
+        })
+      });
+      let responseResult = await response;
+      console.log(responseResult);
+      this.setState({status: responseResult.status})
+    } catch (error) {
+      console.error(error);
     }
+  }
+  render() {
+    let message = '';
+    if (this.state.status === 0)
+      message = 'Not called'
+    else if (this.state.status === 202)
+      message = 'Accepted';
+    else if (this.state.status === 401)
+      message = 'Unauthorized'
+    else
+      message = 'Internal Server Error'
+    return(
+      <View>
+        <Text>{message}</Text>
+        <Button title='Save data' onPress={this.saveData}/>
+      </View>
+    )
+  }
 }
 
 export default class QuizData extends Component {
-    render() {
-        return(
-            <Quiz/>
-        )
-    }
+  render() {
+    return(
+      <Quiz/>
+    )
+  }
 }

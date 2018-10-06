@@ -1,17 +1,18 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {createDrawerNavigator} from  'react-navigation';
-import Icon from "react-native-vector-icons/MaterialIcons";
-import MainScreen from "../MainPage";
-import DetailScreen from "../DetailScreen";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import MainScreen from '../MainPage';
+import DetailScreen from '../DetailScreen';
+import RecordScreen from '../RecordScreen';
 
 const StackNav = createDrawerNavigator({
   Main : {
     screen: MainScreen,
     navigationOptions: ({navigation}) => ({
-      title: "Main",
-      headerLeft:(<TouchableOpacity onPress={() => navigation.navigate("DrawerOpen")}>
-                    <Icon name="menu" size={30} />
+      title: 'Main',
+      headerLeft:(<TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                    <Icon name='menu' size={30} />
                   </TouchableOpacity>
       )
     })
@@ -19,7 +20,13 @@ const StackNav = createDrawerNavigator({
   Detail: {
     screen: DetailScreen,
     navigationOptions: {
-      title: "Detail",
+      title: 'Detail',
+    }
+  },
+  Record: {
+    screen: RecordScreen,
+    navigationOptions: {
+      title: 'Record',
     }
   }
 });

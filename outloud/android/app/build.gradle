@@ -149,6 +149,8 @@ android {
 }
 
 dependencies {
+    api project(':react-native-sound')
+    api project(':react-native-audio')
     api project(':react-native-sentry')
     api project(':react-native-vector-icons')
     api project(':react-native-auth0')

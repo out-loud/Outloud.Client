@@ -10,6 +10,7 @@ class MainPage extends Component {
         <OfflineNotice/>
         <QuizData/>
         <Button onPress={() => this.props.navigation.navigate("Detail")} title="Detail Page" />
+        <Button onPress={() => this.props.navigation.navigate("Record")} title="Record Page" />
       </View>
     );
   }
