@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {AsyncStorage, Button, Text, View} from "react-native";
+import {api as apiConfig} from '../proxy.json';
 
 let apiUrl;
 
 if (__DEV__) {
-  apiUrl = 'http://10.0.2.2:5002/api/values';
+  apiUrl = apiConfig.dev + '/api/values';
 } else {
-  apiUrl = 'http://outloud.azurewebsites.net/api/values';
+  apiUrl = apiConfig.prod + '/api/values';
 }
 
 class Quiz extends Component {
@@ -16,6 +17,7 @@ class Quiz extends Component {
     try {
       let token = await AsyncStorage.getItem(`@User:accessToken`);
       console.log(token);
+      console.log(apiUrl);
       let response = await fetch(apiUrl, {
         method: 'POST',
         headers: {

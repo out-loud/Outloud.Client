@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {
   AppRegistry,
+  AsyncStorage,
   StyleSheet,
   Text,
   View,
@@ -12,7 +13,18 @@ import {
 
 import Sound from 'react-native-sound';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import {api as netConfig} from '../../proxy.json'
 
+let apiUrl;
+
+if (__DEV__) {
+  apiUrl = netConfig.dev + '/api/speech';
+} else {
+  apiUrl = netConfig.prod + '/api/speech';
+}
+AudioRecorder.onProgress = (data) => {
+  console.log(data.currentMetering, data.currentPeakMetering)
+};
 class SpeechRecorder extends Component {
 
     state = {
@@ -21,17 +33,18 @@ class SpeechRecorder extends Component {
       paused: false,
       stoppedRecording: false,
       finished: false,
-      audioPath: AudioUtils.DocumentDirectoryPath + '/test.awb',
+      audioPath: AudioUtils.DocumentDirectoryPath + '/speech.awb',
       hasPermission: undefined,
+      result : ''
     };
 
     prepareRecordingPath(audioPath){
       AudioRecorder.prepareRecordingAtPath(audioPath, {
-        SampleRate: 22050,
+        SampleRate: 16000,
         Channels: 1,
         AudioQuality: "High",
         AudioEncoding: "amr_wb",
-        AudioEncodingBitRate: 32000
+        AudioEncodingBitRate: 16000
       });
     }
 
@@ -44,7 +57,7 @@ class SpeechRecorder extends Component {
         this.prepareRecordingPath(this.state.audioPath);
 
         AudioRecorder.onProgress = (data) => {
-          this.setState({currentTime: Math.floor(data.currentTime)});
+          this.setState({currentTime: Math.floor(data.currentTime)} );
         };
 
         AudioRecorder.onFinished = (data) => {
@@ -94,6 +107,33 @@ class SpeechRecorder extends Component {
       }
     }
 
+    async _recognize() {
+      if (!this.state.finished)
+        console.warn('Can\'t recognize while recording!');
+      try {
+        let token = await AsyncStorage.getItem(`@User:accessToken`);
+        const data = new FormData();
+        data.append('speech', {
+          uri: 'file://' + this.state.audioPath,
+          type: 'audio/amr-wb',
+          name: 'speech.awb'
+        });
+        let response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          body: data
+        });
+        //TODO work with a response
+        let responseContent = await response.json();
+        console.log(responseContent);
+        this.setState({result: JSON.stringify(responseContent)})
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     async _resume() {
       if (!this.state.paused) {
         console.warn('Can\'t resume, not paused!');
@@ -118,7 +158,6 @@ class SpeechRecorder extends Component {
 
       try {
         const filePath = await AudioRecorder.stopRecording();
-
         if (Platform.OS === 'android') {
           this._finishRecording(true, filePath);
         }
@@ -184,16 +223,17 @@ class SpeechRecorder extends Component {
     }
 
     render() {
-
+      let result = this.state.result ? result : 0;
       return (
         <View style={styles.container}>
           <View style={styles.controls}>
+            <Text style={styles.progressText}>{this.state.currentTime}s</Text>
             {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
             {this._renderButton("PLAY", () => {this._play()} )}
             {this._renderButton("STOP", () => {this._stop()} )}
-            {/* {this._renderButton("PAUSE", () => {this._pause()} )} */}
             {this._renderPauseButton(() => {this.state.paused ? this._resume() : this._pause()})}
-            <Text style={styles.progressText}>{this.state.currentTime}s</Text>
+            {this._renderButton("RECOGNIZE", () => {this._recognize()} )}
+            <Text >Recognized {result} words</Text>
           </View>
         </View>
       );
@@ -211,7 +251,7 @@ class SpeechRecorder extends Component {
       flex: 1,
     },
     progressText: {
-      paddingTop: 50,
+      paddingTop: 40,
       fontSize: 50,
       color: "#fff"
     },

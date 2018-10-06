@@ -1,0 +1,6 @@
+{
+    "api": {
+        "dev": "http://10.0.2.2:5002",
+        "prod": "http://outloud.azurewebsites.net"
+    }
+}
