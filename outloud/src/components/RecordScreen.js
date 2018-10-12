@@ -4,13 +4,13 @@ import {
   View,
   StyleSheet
 } from 'react-native';
-import SpeechRecorder from './speech/SpeechRecorder'
+import VoiceTest from './speech/VoiceTest'
 
 class RecordScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <SpeechRecorder/>
+        <VoiceTest/>
       </View>
     );
   }
