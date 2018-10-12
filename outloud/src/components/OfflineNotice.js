@@ -47,7 +47,6 @@ class OfflineNotice extends PureComponent {
     } else {
       this.setState({ isConnected });
     }
-    console.log('xd');
     fetch(apiUrl).then(response => {
       if (!response.ok)
         this.setState({isHealthy: false});
