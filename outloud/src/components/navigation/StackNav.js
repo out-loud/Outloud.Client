@@ -3,6 +3,8 @@ import {TouchableOpacity} from 'react-native';
 import {createDrawerNavigator} from  'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MainScreen from '../MainPage';
+import AddScreen from '../AddScreen';
+import ModifyItemScreen from '../quiz/ModifyItemScreen'
 import DetailScreen from '../DetailScreen';
 import RecordScreen from '../RecordScreen';
 
@@ -27,6 +29,18 @@ const StackNav = createDrawerNavigator({
     screen: RecordScreen,
     navigationOptions: {
       title: 'Record',
+    }
+  },
+  Add: {
+    screen: AddScreen,
+    navigationOptions: {
+      title: 'Add'
+    }
+  },
+  ModifyItem: {
+    screen: ModifyItemScreen,
+    navigationOptions: {
+      title: 'ModifyItem'
     }
   }
 });

@@ -27,8 +27,8 @@ class SideMenu extends Component {
               Section 1
             </Text>
             <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Page1')}>
-              Page1
+              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Add')}>
+              Add new
               </Text>
             </View>
           </View>

@@ -70,7 +70,6 @@ export default class Recognizer extends Component {
     }
   }
 
-
   render() {
     return (
       <View>
