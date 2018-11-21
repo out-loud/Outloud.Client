@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text
+  Modal,
+  View
 } from 'react-native';
-import { Button } from 'react-native-material-ui';
+import { ActionButton, Button, Toolbar } from 'react-native-material-ui';
 import {api as apiConfig} from '../../proxy.json';
 
 class ModifyItemScreen extends Component {
@@ -11,7 +11,8 @@ class ModifyItemScreen extends Component {
     super(props);
     this.state = {
       items: [],
-      itemType: this.props.navigation.state.params.itemType
+      itemType: this.props.navigation.state.params.itemType,
+      modalVisible: false
     }
   }
 
@@ -23,12 +24,21 @@ class ModifyItemScreen extends Component {
   }
 
   getNextItemType(itemType) {
+    if (!itemType)
+      return 'category'
     if (itemType == 'category')
       return 'quiz'
     if (itemType == 'quiz')
       return 'words'
-    else
-      return null
+  }
+
+  getPreviousItemType(itemType) {
+    if (!itemType)
+      return 'words'
+    if (itemType == 'words')
+      return 'quiz'
+    if (itemType == 'quiz')
+      return 'category'
   }
 
   componentWillMount() {
@@ -36,43 +46,81 @@ class ModifyItemScreen extends Component {
   }
 
   load(id) {
-    let apiUrl = this.getUrl(this.state.itemType)
-    if (id)
-      apiUrl += `/${id}`
-    console.log(apiUrl);
-    let nextItemType = this.getNextItemType(this.state.itemType);
-    try {
-      fetch(apiUrl)
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          items: responseJson,
-          itemType: nextItemType
-        })
-      });
-    } catch (error) {
-      console.error(error);
+    if (this.state.itemType) {
+      let apiUrl = this.getUrl(this.state.itemType)
+      if (id)
+        apiUrl += `/${id}`
+      console.log(apiUrl);
+      let nextItemType = this.getNextItemType(this.state.itemType);
+      try {
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState({
+            items: responseJson,
+            itemType: nextItemType
+          })
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
-  loadNext = (id) => {
-    this.setState({
-      items: []
-    });
-    this.load(id);
+  loadPrevious = () => {
+    if (this.state.parentId)
+      this.load(this.parentId)
+    else
+      this.props.navigation.goBack()
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   render() {
     let buttonItems;
+    const itemType = this.getPreviousItemType(this.state.itemType)
     console.log(this.state.items.length)
     if (this.state.items.length)
       buttonItems = this.state.items.map(item => (
-        <Button raised primary text={item.name} onPress={() => this.loadNext(item.id)} key={item.id}/>
+        <Button raised primary text={item.name} onPress={() => this.load(item.id)} key={item.id}/>
     ));
 
     return (
-      <View>
+      <View style={{flex:1}}>
+        <Toolbar
+          leftElement="arrow-back"
+          centerElement={`Search for a ${itemType}`}
+          searchable={{
+            autoFocus: true,
+            placeholder: 'Search',
+          }}
+          rightElement={{
+            menu: {
+              icon: "more-vert",
+              labels: ["item 1", "item 2"]
+            }
+          }}
+          onLeftElementPress={() => this.loadPrevious()}
+          onRightElementPress={ (label) => { console.log(label) }}
+        />
         {buttonItems}
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            this.setModalVisible(false)
+          }}>
+            <Toolbar
+            leftElement="arrow-back"
+            onLeftElementPress={() => this.setModalVisible(false)}
+            centerElement={`Add a new ${itemType}`}
+            />
+        </Modal>
+        <ActionButton />
+        <ActionButton icon="add" onPress={() => this.setModalVisible(true)}/>
       </View>
     )
   }
