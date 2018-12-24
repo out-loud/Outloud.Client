@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Image, View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import Voice from 'react-native-voice';
-
+import {api as apiConfig} from '../../proxy.json';
 
 export default class Recognizer extends Component {
   constructor(props) {
@@ -14,11 +14,38 @@ export default class Recognizer extends Component {
       started: false,
       results: [],
       partialResults: [],
+      words: [],
+      index: 0,
+      points: 0,
+      correct: true,
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
     Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
     Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
+  }
+
+  getUrl(endpoint) {
+    if (__DEV__)
+      return `${apiConfig.dev}/${endpoint}`;
+    else
+      return `${apiConfig.prod}/${endpoint}`;
+  }
+
+  componentWillMount() {
+    let apiUrl = this.getUrl('words/100d8bda-d146-4e8d-2dae-08d66837a9ae')
+    try {
+      fetch(apiUrl)
+      .then(response => response.json())
+      .then(responseJson => {
+        let words = responseJson.map(x => x.name);
+        this.setState({words: words})
+      });
+    }
+    catch(ex) {
+      console.log(ex);
+    }
+    
   }
 
   componentWillUnmount() {
@@ -48,7 +75,18 @@ export default class Recognizer extends Component {
       results: e.value
     });
     console.log(this.state.results)
-    // compareResults();
+    this.compareResults()
+  }
+
+  compareResults = () => {
+    let word = this.state.words[this.state.index];
+    if (this.state.results[0] === word)
+      console.log(true)
+    else
+      this.setState({
+        correct: false,
+      })
+    this.setState({index: this.state.index + 1})
   }
 
   _startRecognizing = async(e) => {
@@ -58,21 +96,23 @@ export default class Recognizer extends Component {
     try {
       await Voice.start('en-US');
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
 
   _stopRecognizing = async(e) => {
     try {
-      await Voice.stop();
+      await Voice.stop()
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
 
   render() {
+    let word = this.state.words[this.state.index]
     return (
       <View>
+        <Text>{word}</Text>
         <TouchableHighlight onPress={this._startRecognizing.bind(this)}>
           <Image
             style={styles.button}

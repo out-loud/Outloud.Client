@@ -4,6 +4,8 @@ import {
   View
 } from 'react-native';
 import { ActionButton, Button, Toolbar } from 'react-native-material-ui';
+import { TextField } from 'react-native-material-textfield';
+import { Dropdown } from 'react-native-material-dropdown';
 import {api as apiConfig} from '../../proxy.json';
 
 class ModifyItemScreen extends Component {
@@ -12,7 +14,7 @@ class ModifyItemScreen extends Component {
     this.state = {
       items: [],
       itemType: this.props.navigation.state.params.itemType,
-      modalVisible: false
+      modalVisible: false,
     }
   }
 
@@ -78,8 +80,28 @@ class ModifyItemScreen extends Component {
     this.setState({modalVisible: visible});
   }
 
+  addNewItem(newItem) {
+    let itemType = this.getPreviousItemType(this.state.itemType)
+    if (itemType == 'category')
+      //dont render
+    if (itemType == 'quiz')
+      //render 1 dropdown
+    if (itemType == 'words')
+      //render 2 dropdowns
+
+      console.log("IMPLEMENT!")
+  }
+
   render() {
     let buttonItems;
+    let newItem;
+    let data = [{
+      value: 'Banana',
+    }, {
+      value: 'Mango',
+    }, {
+      value: 'Pear',
+    }];
     const itemType = this.getPreviousItemType(this.state.itemType)
     console.log(this.state.items.length)
     if (this.state.items.length)
@@ -113,11 +135,23 @@ class ModifyItemScreen extends Component {
           onRequestClose={() => {
             this.setModalVisible(false)
           }}>
+          <View style={{flex:1}}>
             <Toolbar
-            leftElement="arrow-back"
-            onLeftElementPress={() => this.setModalVisible(false)}
-            centerElement={`Add a new ${itemType}`}
+              leftElement="arrow-back"
+              onLeftElementPress={() => this.setModalVisible(false)}
+              centerElement={`Add a new ${itemType}`}
             />
+            <Dropdown
+              label='Favorite Fruit'
+              data={data}
+            />
+            <TextField
+              label={`New ${itemType}`}
+              value={newItem}
+              onChangeText={ (newItem) => this.setState({ newItem }) }
+            />
+          </View>
+            
         </Modal>
         <ActionButton />
         <ActionButton icon="add" onPress={() => this.setModalVisible(true)}/>
