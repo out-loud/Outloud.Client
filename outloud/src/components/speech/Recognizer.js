@@ -81,36 +81,41 @@ export default class Recognizer extends Component {
   }
 
   showPopup = (success) => {
-    if(success)
-      Snackbar.show({
-        title: 'Correct',
-        duration: Snackbar.LENGTH_SHORT,
-        backgroundColor: '#F5FCFF',
-        action: {
-          title: 'yas babe',
-          color: 'green',
-          onPress: () => { Snackbar.dismiss },
-        }
-      });
-    else
+    let title = 'Correct'
+    let actionTitle = 'yas babe'
+    let color = 'green'
+
+    if (success === 1) {
+      title = 'U wrong n00b'
+      actionTitle = 'OK :('
+      color = 'red'
+    }
+
+    if (success === 2) {
+      title = 'Almost'
+      actionTitle = 'Arghhh'
+      color = 'orange'
+    }
+
     Snackbar.show({
-      title: 'U wrong n00b',
+      title,
       duration: Snackbar.LENGTH_SHORT,
-      backgroundColor: '#F5FCFF',
       action: {
-        title: 'OK :(',
-        color: 'red',
+        title: actionTitle,
+        color,
         onPress: () => { Snackbar.dismiss },
       }
-    });
+    })
   }
 
   compareResults = () => {
     let word = this.state.words[this.state.index];
     if (this.state.results[0].toLowerCase() === word.toLowerCase())
-      this.showPopup(true)
+      this.showPopup(0)
+    else if (this.state.results[1].toLowerCase() === word.toLowerCase())
+      this.showPopup(2)
     else {
-      this.showPopup(false)
+      this.showPopup(1)
       this.setState({
         correct: false,
       })
@@ -173,6 +178,7 @@ export default class Recognizer extends Component {
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
   flex: 1,
