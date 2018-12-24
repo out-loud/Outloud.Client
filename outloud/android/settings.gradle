@@ -1,4 +1,6 @@
 rootProject.name = 'outloud'
+include ':react-native-material-snackbar'
+project(':react-native-material-snackbar').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-material-snackbar/android')
 include ':react-native-audio'
 project(':react-native-audio').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-audio/android')
 include ':react-native-voice'

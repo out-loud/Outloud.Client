@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Image, View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import Voice from 'react-native-voice';
+import Snackbar from 'react-native-material-snackbar';
 import {api as apiConfig} from '../../proxy.json';
 
 export default class Recognizer extends Component {
@@ -18,6 +19,8 @@ export default class Recognizer extends Component {
       index: 0,
       points: 0,
       correct: true,
+      parentId: props.navigation.state.params.parentId,
+      progress: 0,
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
     Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
@@ -33,7 +36,7 @@ export default class Recognizer extends Component {
   }
 
   componentWillMount() {
-    let apiUrl = this.getUrl('words/100d8bda-d146-4e8d-2dae-08d66837a9ae')
+    let apiUrl = this.getUrl(`words/${this.state.parentId}`)
     try {
       fetch(apiUrl)
       .then(response => response.json())
@@ -45,7 +48,6 @@ export default class Recognizer extends Component {
     catch(ex) {
       console.log(ex);
     }
-    
   }
 
   componentWillUnmount() {
@@ -78,15 +80,47 @@ export default class Recognizer extends Component {
     this.compareResults()
   }
 
+  showPopup = (success) => {
+    if(success)
+      Snackbar.show({
+        title: 'Correct',
+        duration: Snackbar.LENGTH_SHORT,
+        backgroundColor: '#F5FCFF',
+        action: {
+          title: 'yas babe',
+          color: 'green',
+          onPress: () => { Snackbar.dismiss },
+        }
+      });
+    else
+    Snackbar.show({
+      title: 'U wrong n00b',
+      duration: Snackbar.LENGTH_SHORT,
+      backgroundColor: '#F5FCFF',
+      action: {
+        title: 'OK :(',
+        color: 'red',
+        onPress: () => { Snackbar.dismiss },
+      }
+    });
+  }
+
   compareResults = () => {
     let word = this.state.words[this.state.index];
-    if (this.state.results[0] === word)
-      console.log(true)
-    else
+    if (this.state.results[0].toLowerCase() === word.toLowerCase())
+      this.showPopup(true)
+    else {
+      this.showPopup(false)
       this.setState({
         correct: false,
       })
-    this.setState({index: this.state.index + 1})
+    }
+      
+    let progress = (this.state.index + 1) / this.state.words.length
+    this.setState({
+      index: this.state.index + 1,
+      progress
+    })
   }
 
   _startRecognizing = async(e) => {
@@ -111,8 +145,9 @@ export default class Recognizer extends Component {
   render() {
     let word = this.state.words[this.state.index]
     return (
-      <View>
-        <Text>{word}</Text>
+      <View style={styles.container}>
+        <Text>Progress: {this.state.progress * 100}%</Text>
+        <Text>Say: {word}</Text>
         <TouchableHighlight onPress={this._startRecognizing.bind(this)}>
           <Image
             style={styles.button}
@@ -139,9 +174,14 @@ export default class Recognizer extends Component {
   }
 }
 const styles = StyleSheet.create({
+  container: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center'
+  },
   button: {
-    width: 50,
-    height: 50,
+    width: 200,
+    height: 200,
   },
   action: {
     textAlign: 'center',

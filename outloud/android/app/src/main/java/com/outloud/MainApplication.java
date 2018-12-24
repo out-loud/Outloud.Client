@@ -3,6 +3,7 @@ package com.outloud;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.wenkesj.voice.VoicePackage;
 import com.zmxv.RNSound.RNSoundPackage;
@@ -34,7 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSoundPackage(),
             new RNSentryPackage(),
             new VectorIconsPackage(),
-            new A0Auth0Package()
+            new A0Auth0Package(),
+            new SnackbarPackage()
       );
     }
 

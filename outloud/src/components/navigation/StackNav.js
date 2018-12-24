@@ -6,18 +6,32 @@ import MainScreen from '../MainPage';
 import AddScreen from '../AddScreen';
 import ModifyItemScreen from '../quiz/ModifyItemScreen'
 import DetailScreen from '../DetailScreen';
-import RecordScreen from '../RecordScreen';
+import CategoriesScreen from '../CategoriesScreen';
+import QuizesScreen from '../QuizesScreen';
+import Recognizer from '../speech/Recognizer';
 
 const StackNav = createDrawerNavigator({
   Main : {
     screen: MainScreen,
     navigationOptions: ({navigation}) => ({
       title: 'Main',
-      headerLeft:(<TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-                    <Icon name='menu' size={30} />
-                  </TouchableOpacity>
-      )
+      headerLeft:
+        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+          <Icon name='menu' size={30} />
+        </TouchableOpacity>
     })
+  },
+  Categories: {
+    screen: CategoriesScreen,
+    navigationOptions: {
+      title: 'Categories',
+    }
+  },
+  Quizes: {
+    screen: QuizesScreen,
+    navigationOptions: {
+      title: 'Quizes',
+    }
   },
   Detail: {
     screen: DetailScreen,
@@ -26,7 +40,7 @@ const StackNav = createDrawerNavigator({
     }
   },
   Record: {
-    screen: RecordScreen,
+    screen: Recognizer,
     navigationOptions: {
       title: 'Record',
     }

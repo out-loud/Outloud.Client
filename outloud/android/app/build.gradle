@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-material-snackbar')
     implementation project(':react-native-audio')
     implementation project(':react-native-voice')
     implementation project(':react-native-sound')
