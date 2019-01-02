@@ -21,7 +21,7 @@ class QuizesScreen extends Component {
   }
 
   componentDidMount() {
-    apiUrl = this.getUrl(`quiz/${this.state.parentId}`)
+    apiUrl = this.getUrl(`quizes/${this.state.parentId}`)
     try {
       fetch(apiUrl)
       .then(response => response.json())

@@ -19,7 +19,8 @@ class CategoriesScreen extends Component {
   }
 
   componentDidMount() {
-    apiUrl = this.getUrl('category')
+    apiUrl = this.getUrl('categories')
+    console.log(apiUrl)
     try {
       fetch(apiUrl)
       .then(response => response.json())

@@ -9,6 +9,7 @@ import DetailScreen from '../DetailScreen';
 import CategoriesScreen from '../CategoriesScreen';
 import QuizesScreen from '../QuizesScreen';
 import Recognizer from '../speech/Recognizer';
+import BottomNav from './BottomNav';
 
 const StackNav = createDrawerNavigator({
   Main : {
@@ -20,6 +21,12 @@ const StackNav = createDrawerNavigator({
           <Icon name='menu' size={30} />
         </TouchableOpacity>
     })
+  },
+  BottomNav : {
+    screen: BottomNav,
+    navigationOptions: {
+      title: 'BottomNav'
+    }
   },
   Categories: {
     screen: CategoriesScreen,

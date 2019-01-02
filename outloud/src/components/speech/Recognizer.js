@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Image, View, Text, TouchableHighlight, StyleSheet} from 'react-native';
+import {AsyncStorage, Image, View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import Voice from 'react-native-voice';
 import Snackbar from 'react-native-material-snackbar';
 import {api as apiConfig} from '../../proxy.json';
+
+var jwtDecode = require('jwt-decode');
 
 export default class Recognizer extends Component {
   constructor(props) {
@@ -50,8 +52,9 @@ export default class Recognizer extends Component {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = async() => {
     Voice.destroy().then(Voice.removeAllListeners);
+    await this.saveProgress();
   }
 
   onSpeechStart = (e) => {
@@ -120,12 +123,49 @@ export default class Recognizer extends Component {
         correct: false,
       })
     }
-      
+    
     let progress = (this.state.index + 1) / this.state.words.length
     this.setState({
       index: this.state.index + 1,
       progress
     })
+  }
+  
+  saveProgress = async() => {
+    let progress = this.state.progress * 100
+    let userId = await this.decodeToken()
+    let apiUrl = this.getUrl('users')
+    let courseId = this.state.parentId;
+    let courseName = 'asdasd'
+    const token = await AsyncStorage.getItem(`@User:accessToken`)
+    let body = JSON.stringify({
+      userId: userId,
+      courseId: courseId,
+      courseName: courseName,
+      progress: progress
+    })
+    console.log(body)
+    try {
+      let response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          // 'Authorization': 'Bearer ' + token,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: body
+      });
+      let responseResult = await response;
+      console.log(responseResult)
+    } catch(ex) {
+      console.log(ex)
+    }
+  }
+
+  decodeToken = async() => {
+    const token = await AsyncStorage.getItem(`@User:accessToken`)
+    let decodedToken = jwtDecode(token)
+    return decodedToken.sub
   }
 
   _startRecognizing = async(e) => {
