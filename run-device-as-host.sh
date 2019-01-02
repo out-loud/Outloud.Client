@@ -3,5 +3,7 @@
 #1 start chrome for remote debugging
 start chrome "http://localhost:8081/debugger-ui/"
 #2 start emulator
-cd C:/Users/Marcin/AppData/Local/Android/Sdk/tools
-./emulator -avd Nexus_5X_API_26
+cd C:/Users/Marcin/AppData/Local/Android/Sdk/platform-tools
+./adb reverse tcp:8081 tcp:8081
+./adb reverse tcp:5002  tcp:5002
+./adb reverse tcp:5000  tcp:5000

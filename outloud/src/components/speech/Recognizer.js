@@ -1,0 +1,238 @@
+import React, {Component} from 'react';
+import {AsyncStorage, Image, View, Text, TouchableHighlight, StyleSheet} from 'react-native';
+import Voice from 'react-native-voice';
+import Snackbar from 'react-native-material-snackbar';
+import {api as apiConfig} from '../../proxy.json';
+
+var jwtDecode = require('jwt-decode');
+
+export default class Recognizer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      recognized: false,
+      pitch: false,
+      error: false,
+      end: false,
+      started: false,
+      results: [],
+      partialResults: [],
+      words: [],
+      index: 0,
+      points: 0,
+      correct: true,
+      parentId: props.navigation.state.params.parentId,
+      progress: 0,
+    };
+    Voice.onSpeechStart = this.onSpeechStart.bind(this);
+    Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
+    Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
+    Voice.onSpeechResults = this.onSpeechResults.bind(this);
+  }
+
+  getUrl(endpoint) {
+    if (__DEV__)
+      return `${apiConfig.dev}/${endpoint}`;
+    else
+      return `${apiConfig.prod}/${endpoint}`;
+  }
+
+  componentWillMount() {
+    let apiUrl = this.getUrl(`words/${this.state.parentId}`)
+    try {
+      fetch(apiUrl)
+      .then(response => response.json())
+      .then(responseJson => {
+        let words = responseJson.map(x => x.name);
+        this.setState({words: words})
+      });
+    }
+    catch(ex) {
+      console.log(ex);
+    }
+  }
+
+  componentWillUnmount = async() => {
+    Voice.destroy().then(Voice.removeAllListeners);
+    await this.saveProgress();
+  }
+
+  onSpeechStart = (e) => {
+    this.setState({
+      started: true
+    });
+  }
+
+  onSpeechEnd = (e) => {
+    this.setState({
+      end: true
+    });
+  }
+
+  onSpeechRecognized = (e) => {
+    this.setState({
+      recognized: true
+    });
+  }
+
+  onSpeechResults = (e) => {
+    this.setState({
+      results: e.value
+    });
+    console.log(this.state.results)
+    this.compareResults()
+  }
+
+  showPopup = (success) => {
+    let title = 'Correct'
+    let actionTitle = 'yas babe'
+    let color = 'green'
+
+    if (success === 1) {
+      title = 'U wrong n00b'
+      actionTitle = 'OK :('
+      color = 'red'
+    }
+
+    if (success === 2) {
+      title = 'Almost'
+      actionTitle = 'Arghhh'
+      color = 'orange'
+    }
+
+    Snackbar.show({
+      title,
+      duration: Snackbar.LENGTH_SHORT,
+      action: {
+        title: actionTitle,
+        color,
+        onPress: () => { Snackbar.dismiss },
+      }
+    })
+  }
+
+  compareResults = () => {
+    let word = this.state.words[this.state.index];
+    if (this.state.results[0].toLowerCase() === word.toLowerCase())
+      this.showPopup(0)
+    else if (this.state.results[1].toLowerCase() === word.toLowerCase())
+      this.showPopup(2)
+    else {
+      this.showPopup(1)
+      this.setState({
+        correct: false,
+      })
+    }
+    
+    let progress = (this.state.index + 1) / this.state.words.length
+    this.setState({
+      index: this.state.index + 1,
+      progress
+    })
+  }
+  
+  saveProgress = async() => {
+    let progress = this.state.progress * 100
+    let userId = await this.decodeToken()
+    let apiUrl = this.getUrl('users')
+    let courseId = this.state.parentId;
+    let courseName = 'asdasd'
+    const token = await AsyncStorage.getItem(`@User:accessToken`)
+    let body = JSON.stringify({
+      userId: userId,
+      courseId: courseId,
+      courseName: courseName,
+      progress: progress
+    })
+    console.log(body)
+    try {
+      let response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          // 'Authorization': 'Bearer ' + token,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: body
+      });
+      let responseResult = await response;
+      console.log(responseResult)
+    } catch(ex) {
+      console.log(ex)
+    }
+  }
+
+  decodeToken = async() => {
+    const token = await AsyncStorage.getItem(`@User:accessToken`)
+    let decodedToken = jwtDecode(token)
+    return decodedToken.sub
+  }
+
+  _startRecognizing = async(e) => {
+    this.setState({
+      started: true,
+    });
+    try {
+      await Voice.start('en-US');
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  _stopRecognizing = async(e) => {
+    try {
+      await Voice.stop()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  render() {
+    let word = this.state.words[this.state.index]
+    return (
+      <View style={styles.container}>
+        <Text>Progress: {this.state.progress * 100}%</Text>
+        <Text>Say: {word}</Text>
+        <TouchableHighlight onPress={this._startRecognizing.bind(this)}>
+          <Image
+            style={styles.button}
+            source={require('../../../resources/button.png')}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this._stopRecognizing.bind(this)}>
+          <Text
+            style={styles.action}>
+            Stop Recognizing
+          </Text>
+        </TouchableHighlight>
+        {this.state.results.map((result, index) => {
+          return (
+            <Text
+              key={`result-${index}`}
+              style={styles.stat}>
+              {result}
+            </Text>
+          )
+        })}
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center'
+  },
+  button: {
+    width: 200,
+    height: 200,
+  },
+  action: {
+    textAlign: 'center',
+    color: '#0000FF',
+    marginVertical: 5,
+    fontWeight: 'bold',
+  },
+});

@@ -1,5 +1,14 @@
 import React, { PureComponent } from 'react';
 import { View, Text, NetInfo, Dimensions, StyleSheet } from 'react-native';
+import {api as apiConfig} from '../proxy.json';
+
+let apiUrl;
+
+if (__DEV__) {
+  apiUrl = apiConfig.dev + '/healthcheck';
+} else {
+  apiUrl = apiConfig.prod + '/healthcheck';
+}
 
 const { width } = Dimensions.get('window');
 
@@ -10,10 +19,18 @@ function MiniOfflineSign() {
     </View>
   );
 }
+function MiniServerDownSign() {
+  return (
+    <View style={styles.downContainer}>
+      <Text style={styles.offlineText}>No connection to the server</Text>
+    </View>
+  );
+}
 
 class OfflineNotice extends PureComponent {
   state = {
-    isConnected: true
+    isConnected: true,
+    isHealthy: true
   };
 
   componentDidMount() {
@@ -30,12 +47,20 @@ class OfflineNotice extends PureComponent {
     } else {
       this.setState({ isConnected });
     }
-  };
+    try {
+      fetch(apiUrl).then(response => this.setState({isHealthy: response.ok}));
+    } catch(error) {
+      console.log(error);
+      this.setState({isHealthy: false})
+    }
+    
+  }
 
   render() {
-    if (!this.state.isConnected) {
+    if (!this.state.isConnected)
       return <MiniOfflineSign />;
-    }
+    else if (!this.state.isHealthy)
+      return <MiniServerDownSign/>
     return null;
   }
 }
@@ -43,6 +68,16 @@ class OfflineNotice extends PureComponent {
 const styles = StyleSheet.create({
   offlineContainer: {
     backgroundColor: '#b52424',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width,
+    position: 'absolute',
+    top: 0
+  },
+  downContainer: {
+    backgroundColor: '#cdb62c',
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',

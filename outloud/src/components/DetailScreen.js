@@ -4,13 +4,12 @@ import {
   View,
   StyleSheet
 } from 'react-native';
+import BottomNav from './navigation/BottomNav';
 
 class DetailScreen extends Component {
   render () {
     return (
-      <View style={styles.container}>
-        <Text>Detail Screen</Text>
-      </View>
+        <BottomNav/>
     );
   }
 }

@@ -55,6 +55,22 @@
 		1B1C5942D03E426CB9C2FB7F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99D1C6418F98414CA5DC2CC2 /* Zocial.ttf */; };
 		6E87516B04464D49950A7DBC /* libRNSentry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0011225C01B04BED8717C24B /* libRNSentry.a */; };
 		17CC0BFB5A624B2B897B62A6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 600D0A678C1245F89E9AA624 /* libz.tbd */; };
+		C368EDA246F4490382B2886E /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40243AE54810444B832F8D38 /* libRNSound.a */; };
+		72ACB5CDBF8B447A8EE4F89F /* libVoice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA99F25621E04EFFAC020AB0 /* libVoice.a */; };
+		E201F574E01142AFBE907C66 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF434C4CB34C407F9A863728 /* libRNAudio.a */; };
+		E73F686B592A41A1B015AD45 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B0E9FBC65497BB45FD06C /* Roboto-Black.ttf */; };
+		782EBCC990B14664ADE289E3 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4387D9D344741E291D64D42 /* Roboto-BlackItalic.ttf */; };
+		866E201B1F0B474BA7A6C2C0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0DC5D417F52448C9CC62184 /* Roboto-Bold.ttf */; };
+		8F9F6CA1333B4D7CA585D88A /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF96CC68FC9B4DFB9F9A23F7 /* Roboto-BoldItalic.ttf */; };
+		1BBFF6F0B4E1431C91B1162B /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D8A312318074AF98021EB47 /* Roboto-Italic.ttf */; };
+		9497E929F49047D895925BDE /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB8553DE174E44958C2A4AE9 /* Roboto-Light.ttf */; };
+		51F09EAC113C4E8BBB8E095F /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1787CBF96DFB42E0969D4CE3 /* Roboto-LightItalic.ttf */; };
+		5C75C6D02E574BC18239F89A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC7867C91AEB4A6DBE49FF06 /* Roboto-Medium.ttf */; };
+		15771437A12844BE89D58EC1 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F83C07630BD47769F1FF957 /* Roboto-MediumItalic.ttf */; };
+		7879C6D27C994C75818E5A18 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCC5362EEA94A879E60142D /* Roboto-Regular.ttf */; };
+		14C4C74581BF49478DB7CB2A /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38CA45D6CFA346A2B346E51D /* Roboto-Thin.ttf */; };
+		8C6A361475084EA9B180A8DF /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA26CAA426534751A03BE0DA /* Roboto-ThinItalic.ttf */; };
+		D1D9496D750C4EECAF434723 /* libRNSnackbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A742A82490AF476099C0D88F /* libRNSnackbar.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +397,26 @@
 		6912CC50CEEB4960B1D13FD8 /* RNSentry.xcodeproj */ = {isa = PBXFileReference; name = "RNSentry.xcodeproj"; path = "../node_modules/react-native-sentry/ios/RNSentry.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		0011225C01B04BED8717C24B /* libRNSentry.a */ = {isa = PBXFileReference; name = "libRNSentry.a"; path = "libRNSentry.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		600D0A678C1245F89E9AA624 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		1F2DE364E8B540A9BCCE2C1E /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		40243AE54810444B832F8D38 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		4FF8CAA1F571411CB1D2DDC4 /* Voice.xcodeproj */ = {isa = PBXFileReference; name = "Voice.xcodeproj"; path = "../node_modules/react-native-voice/ios/Voice.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EA99F25621E04EFFAC020AB0 /* libVoice.a */ = {isa = PBXFileReference; name = "libVoice.a"; path = "libVoice.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AA2BCE2484104CC185506AE8 /* RNAudio.xcodeproj */ = {isa = PBXFileReference; name = "RNAudio.xcodeproj"; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BF434C4CB34C407F9A863728 /* libRNAudio.a */ = {isa = PBXFileReference; name = "libRNAudio.a"; path = "libRNAudio.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		135B0E9FBC65497BB45FD06C /* Roboto-Black.ttf */ = {isa = PBXFileReference; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C4387D9D344741E291D64D42 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B0DC5D417F52448C9CC62184 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EF96CC68FC9B4DFB9F9A23F7 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-BoldItalic.ttf"; path = "../assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D8A312318074AF98021EB47 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; name = "Roboto-Italic.ttf"; path = "../assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EB8553DE174E44958C2A4AE9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1787CBF96DFB42E0969D4CE3 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-LightItalic.ttf"; path = "../assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CC7867C91AEB4A6DBE49FF06 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F83C07630BD47769F1FF957 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ACCC5362EEA94A879E60142D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		38CA45D6CFA346A2B346E51D /* Roboto-Thin.ttf */ = {isa = PBXFileReference; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FA26CAA426534751A03BE0DA /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D6EB5E7F37D74D98B136B8D6 /* RNSnackbar.xcodeproj */ = {isa = PBXFileReference; name = "RNSnackbar.xcodeproj"; path = "../node_modules/react-native-material-snackbar/ios/RNSnackbar.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A742A82490AF476099C0D88F /* libRNSnackbar.a */ = {isa = PBXFileReference; name = "libRNSnackbar.a"; path = "libRNSnackbar.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +448,10 @@
 				5D0C14CD548548A389E27040 /* libRNVectorIcons.a in Frameworks */,
 				6E87516B04464D49950A7DBC /* libRNSentry.a in Frameworks */,
 				17CC0BFB5A624B2B897B62A6 /* libz.tbd in Frameworks */,
+				C368EDA246F4490382B2886E /* libRNSound.a in Frameworks */,
+				72ACB5CDBF8B447A8EE4F89F /* libVoice.a in Frameworks */,
+				E201F574E01142AFBE907C66 /* libRNAudio.a in Frameworks */,
+				D1D9496D750C4EECAF434723 /* libRNSnackbar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +642,10 @@
 				7A84098CE45E4444BE0F1050 /* A0Auth0.xcodeproj */,
 				C005F086220645DBB7ECBCAA /* RNVectorIcons.xcodeproj */,
 				6912CC50CEEB4960B1D13FD8 /* RNSentry.xcodeproj */,
+				1F2DE364E8B540A9BCCE2C1E /* RNSound.xcodeproj */,
+				4FF8CAA1F571411CB1D2DDC4 /* Voice.xcodeproj */,
+				AA2BCE2484104CC185506AE8 /* RNAudio.xcodeproj */,
+				D6EB5E7F37D74D98B136B8D6 /* RNSnackbar.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -667,6 +711,18 @@
 				E8E0D58B1498483D8E6582C3 /* Octicons.ttf */,
 				12A24819709C47D79BA4F33A /* SimpleLineIcons.ttf */,
 				99D1C6418F98414CA5DC2CC2 /* Zocial.ttf */,
+				135B0E9FBC65497BB45FD06C /* Roboto-Black.ttf */,
+				C4387D9D344741E291D64D42 /* Roboto-BlackItalic.ttf */,
+				B0DC5D417F52448C9CC62184 /* Roboto-Bold.ttf */,
+				EF96CC68FC9B4DFB9F9A23F7 /* Roboto-BoldItalic.ttf */,
+				3D8A312318074AF98021EB47 /* Roboto-Italic.ttf */,
+				EB8553DE174E44958C2A4AE9 /* Roboto-Light.ttf */,
+				1787CBF96DFB42E0969D4CE3 /* Roboto-LightItalic.ttf */,
+				CC7867C91AEB4A6DBE49FF06 /* Roboto-Medium.ttf */,
+				0F83C07630BD47769F1FF957 /* Roboto-MediumItalic.ttf */,
+				ACCC5362EEA94A879E60142D /* Roboto-Regular.ttf */,
+				38CA45D6CFA346A2B346E51D /* Roboto-Thin.ttf */,
+				FA26CAA426534751A03BE0DA /* Roboto-ThinItalic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1132,6 +1188,18 @@
 				69145DD3D57B441AB84EAB0C /* Octicons.ttf in Resources */,
 				E0442497C58E4847B4BC7906 /* SimpleLineIcons.ttf in Resources */,
 				1B1C5942D03E426CB9C2FB7F /* Zocial.ttf in Resources */,
+				E73F686B592A41A1B015AD45 /* Roboto-Black.ttf in Resources */,
+				782EBCC990B14664ADE289E3 /* Roboto-BlackItalic.ttf in Resources */,
+				866E201B1F0B474BA7A6C2C0 /* Roboto-Bold.ttf in Resources */,
+				8F9F6CA1333B4D7CA585D88A /* Roboto-BoldItalic.ttf in Resources */,
+				1BBFF6F0B4E1431C91B1162B /* Roboto-Italic.ttf in Resources */,
+				9497E929F49047D895925BDE /* Roboto-Light.ttf in Resources */,
+				51F09EAC113C4E8BBB8E095F /* Roboto-LightItalic.ttf in Resources */,
+				5C75C6D02E574BC18239F89A /* Roboto-Medium.ttf in Resources */,
+				15771437A12844BE89D58EC1 /* Roboto-MediumItalic.ttf in Resources */,
+				7879C6D27C994C75818E5A18 /* Roboto-Regular.ttf in Resources */,
+				14C4C74581BF49478DB7CB2A /* Roboto-Thin.ttf in Resources */,
+				8C6A361475084EA9B180A8DF /* Roboto-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1275,6 +1343,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Debug;
@@ -1305,6 +1377,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Release;
@@ -1330,6 +1406,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Debug;
@@ -1354,6 +1434,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Release;
@@ -1392,6 +1476,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Debug;
@@ -1430,6 +1518,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Release;
@@ -1467,6 +1559,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Debug;
@@ -1504,6 +1600,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-auth0\ios",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-sentry\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-voice\ios\Voice",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-material-snackbar\ios",
 				);
 			};
 			name = Release;
